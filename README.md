@@ -2,4 +2,3 @@
 
 todo:
 - [ ] 4k support
-- [ ]  
