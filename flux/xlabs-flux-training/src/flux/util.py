@@ -7,6 +7,7 @@ import cv2
 import numpy as np
 from PIL import Image
 from huggingface_hub import hf_hub_download
+import hf_transfer
 from safetensors import safe_open
 from safetensors.torch import load_file as load_sft
 
@@ -324,6 +325,7 @@ def load_flow_model(name: str, device: str | torch.device = "cuda", hf_download:
         and configs[name].repo_flow is not None
         and hf_download
     ):
+        hf_transfer.enable()
         ckpt_path = hf_hub_download(configs[name].repo_id, configs[name].repo_flow)
 
     with torch.device("meta" if ckpt_path is not None else device):
